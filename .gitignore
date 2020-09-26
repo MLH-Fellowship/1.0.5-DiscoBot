@@ -139,5 +139,4 @@ cython_debug/
 
 *.csv
 *.json
-*.pt
 .data

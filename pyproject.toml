@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "discobot"
+version = "0.1.0"
+description = "toxic-filter discord bot"
+authors = ["Aaron Pham <aar0npham0103@gmail.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "3.8.5"
+torch = "1.6.0"
+bentoml = "0.9.0"
+
+[tool.poetry.dev-dependencies]
+# torchtext = "0.8.0a0+8dc2125"
+torchtext = "0.7.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
