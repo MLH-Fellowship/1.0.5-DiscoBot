@@ -1,4 +1,4 @@
-# Generated BentoService bundle - ProfanityFilterService:20200928001827_EFD1C3
+# Generated BentoService bundle - ProfanityFilterService:20200928024723_97F9BF
 
 This is a ML Service bundle created with BentoML, it is not recommended to edit
 code or files contained in this directory. Instead, edit the code that uses BentoML

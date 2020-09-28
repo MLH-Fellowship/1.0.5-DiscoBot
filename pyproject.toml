@@ -7,12 +7,12 @@ license = "Apache-2.0"
 
 [tool.poetry.dependencies]
 python = "3.8.5"
-torch = "^1.6.0"
-bentoml = "^0.9.0"
+torch = "1.6.0"
+bentoml = "0.9.0"
 
 [tool.poetry.dev-dependencies]
 # torchtext = "0.8.0a0+8dc2125"
-pandas = "^1.1.2"
+torchtext = "0.7.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
