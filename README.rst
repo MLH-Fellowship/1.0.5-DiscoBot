@@ -3,8 +3,9 @@ DiscoBot
 
 *profanity filters discord bot*
 
+- [NSFW] Release all you can say via Swagger under  `/predict <https://profanityfilterservice.herokuapp.com/>`_
 - ``biLSTM`` trained on ``iMDB`` for sentiment analysis
-- ``torchtext`` was built from ``master``, which can be found here_
+- ``torchtext`` was built from ``master``, which can be found `here <https://github.com/pytorch/text>`_
 
 instructions
 ++++++++++++
@@ -35,5 +36,3 @@ building `torchtext` from source
 
     # This will train the model
     make ARGS=--train prep 
-
-.. _here: https://github.com/pytorch/text
