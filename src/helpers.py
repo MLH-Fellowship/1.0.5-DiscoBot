@@ -1,5 +1,57 @@
 import torch
 import torch.nn as nn
+import yaml
+
+
+def get_config(fpath: str) -> dict:
+    with open(fpath, "r") as f:
+        parsed = yaml.load(f, Loader=yaml.FullLoader)
+    f.close()
+    return parsed
+
+
+def get_pretrained_embedding(init_embed, pretrained_vectors, vocab, unk_token):
+    pretrained_embedding = torch.FloatTensor(init_embed.weight.clone()).detach()
+    pretrained_vocab = pretrained_vectors.vectors.get_stoi()
+
+    unk_tokens = []
+
+    for idx, token in enumerate(vocab.itos):
+        if token in pretrained_vocab:
+            pretrained_vector = pretrained_vectors[token]
+            pretrained_embedding[idx] = pretrained_vector
+        else:
+            unk_tokens.append(token)
+
+    return pretrained_embedding, unk_tokens
+
+
+def init_params(m: nn.Module):
+    if isinstance(m, nn.Embedding):
+        nn.init.uniform_(m.weight, -0.05, 0.05)
+    elif isinstance(m, nn.LSTM):
+        for n, p in m.named_parameters():
+            if "weight_ih" in n:
+                i, f, g, o = p.chunk(4)
+                nn.init.xavier_uniform_(i)
+                nn.init.xavier_uniform_(f)
+                nn.init.xavier_uniform_(g)
+                nn.init.xavier_uniform_(o)
+            elif "weight_hh" in n:
+                i, f, g, o = p.chunk(4)
+                nn.init.orthogonal_(i)
+                nn.init.orthogonal_(f)
+                nn.init.orthogonal_(g)
+                nn.init.orthogonal_(o)
+            elif "bias" in n:
+                i, f, g, o = p.chunk(4)
+                nn.init.zeros_(i)
+                nn.init.ones_(f)
+                nn.init.zeros_(g)
+                nn.init.zeros_(o)
+    elif isinstance(m, nn.Linear):
+        nn.init.xavier_uniform_(m.weight)
+        nn.init.zeros_(m.bias)
 
 
 def sequential_transforms(*transforms):
@@ -37,16 +89,3 @@ def calc_acc(predictions, labels):
     correct = top_pred.eq(labels.view_as(top_pred)).sum()
     acc = correct.float() / labels.shape[0]
     return acc
-
-
-def predict(tokenizer, vocab, model, device, sentence):
-    model.eval()
-
-    tokens = tokenizer.tokenize(sentence)
-    length = torch.LongTensor([len(tokens)]).to(device)
-    idx = [vocab.stoi[token] for token in tokens]
-    tensor = torch.LongTensor(idx).unsqueeze(-1).to(device)
-
-    prediction = model(tensor, length)
-    probabilities = nn.functional.softmax(prediction, dim=-1)
-    return probabilities.squeeze()[-1].item()
