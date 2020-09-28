@@ -23,7 +23,7 @@ init: prep ## package trained model to bento
 build: init ## build bento docker images then deploy on 5000
 	rm -rf $(DEPLOY_DIR) && cp -r $(LATEST) $(DEPLOY_DIR) && mkdir $(DOT_DATA)
 	cp -r src/.data/{aclImdb,aclImdb_v1.tar.gz,glove.6B.50d.txt}  $(DOT_DATA)	
-	cp requirements.txt $(DEPLOY_DIR) && cp src/config.yml $(DEPLOY_DIR)/ProfanityFilterService
+	cp src/requirements.txt $(DEPLOY_DIR) && cp src/config.yml $(DEPLOY_DIR)/ProfanityFilterService
 	echo 'pip install torch==1.6.0+cpu -f https://download.pytorch.org/whl/torch_stable.html' >> $(DEPLOY_DIR)/bentoml-init.sh
 	cd $(DEPLOY_DIR) && docker build -t profanity-filter:latest .
 	
