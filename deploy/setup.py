@@ -28,9 +28,9 @@ except Exception:
 
 setuptools.setup(
     name='ProfanityFilterService',
-    version='20200928032146_21B44E',
+    version='20200928122718_05855D',
     description="BentoML generated model module",
-    long_description="""# Generated BentoService bundle - ProfanityFilterService:20200928032146_21B44E
+    long_description="""# Generated BentoService bundle - ProfanityFilterService:20200928122718_05855D
 
 This is a ML Service bundle created with BentoML, it is not recommended to edit
 code or files contained in this directory. Instead, edit the code that uses BentoML

@@ -1,15 +1,15 @@
 .PHONY := all
 
-.DEFAULT_GOAL := init
+.DEFAULT_GOAL := build
 
-all: help build init run
+all: help build
 
 DEPLOY_DIR := deploy
-
-SVC_DIR := $(HOME)/bentoml/repository/ProfanityFilterService/*
+SVC_DIR := $(HOME)/bentoml/repository/ProfanityFilterService
+DOT_DATA := $(DEPLOY_DIR)/ProfanityFilterService/.data
 
 # ls -ltr $(SVC_DIR) | grep '^d' | tail -1 | awk '{print $(NF)}'
-LATEST := $(shell ls -td -- $(SVC_DIR) | head -n1)
+LATEST := $(shell ls -t -- $(SVC_DIR)/* | head -n1 | cut -d ':' -f1)
 
 help: ## List of defined target
 	@grep -E '^[a-zA-Z_-]+:.*?##.*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'	
@@ -20,15 +20,12 @@ train:
 init: ## package trained model to bento
 	cd src && python packer.py
 
-build: ## build bento docker images then deploy on 5000
-	rm -rf $(DEPLOY_DIR) && cp -r $(LATEST) $(DEPLOY_DIR)
+build: init ## build bento docker images then deploy on 5000
+	rm -rf $(DEPLOY_DIR) && cp -r $(LATEST) $(DEPLOY_DIR) && mkdir $(DOT_DATA)
+	cp -r src/.data/{aclImdb,aclImdb_v1.tar.gz,glove.6B.50d.txt}  $(DOT_DATA)	
 	cp requirements.txt $(DEPLOY_DIR) && cp src/config.yml $(DEPLOY_DIR)/ProfanityFilterService
-	cp -r src/.data/aclImdb $(DEPLOY_DIR)/ProfanityFilterService/.data 
-	cp -r src/.data/{aclImdb_v1.tar.gz,glove.6B.50d.txt} $(DEPLOY_DIR)/ProfanityFilterService/.data
-	cd $(DEPLOY_DIR) && docker build -t aar0npham/profanity-filter:latest .
+	echo 'pip install torch==1.6.0+cpu -f https://download.pytorch.org/whl/torch_stable.html' >> $(DEPLOY_DIR)/bentoml-init.sh
+	cd $(DEPLOY_DIR) && docker build -t profanity-filter:latest .
 	
 run: ## run docker images
-	docker run -p 5000:5000 aar0npham/profanity-filter:latest
-
-push: ## push docker images to repository
-	docker push -t aar0npham/profanity-filter:latest
+	docker run -p 5000:5000 profanity-filter:latest

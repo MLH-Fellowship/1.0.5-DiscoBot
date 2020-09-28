@@ -47,4 +47,4 @@ else
 fi
 
 # Install PyPI packages specified in requirements.txt
-pip install -r ./requirements.txt --no-cache-dir $EXTRA_PIP_INSTALL_ARGS
+pip install -r ./requirements.txt --no-cache-dir $EXTRA_PIP_INSTALL_ARGSpip install torch==1.6.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
