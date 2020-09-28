@@ -3,18 +3,17 @@ DiscoBot
 
 *profanity filters discord bot*
 
-- `biLSTM` trained on `iMDB` for sentiment analysis
-- `torchtext` was built from `master`, which can be found here_
+- ``biLSTM`` trained on ``iMDB`` for sentiment analysis
+- ``torchtext`` was built from ``master``, which can be found here_
 
 instructions
 ++++++++++++
 
-`make help` for further instructions
+``make help`` for further instructions
 
-- To train the model do `make train` 
-- To package the model to bento do `make && make build`
-- to run the docker container do `make run`
-- endpoint can be accessed through `POST` request via `localhost:5000`
+- To package the model to bento do ``make``
+- to run the docker container do ``make run``
+- endpoint can be accessed through ``POST`` request via ``localhost:5000``
 
 .. code-block:: shell
 
@@ -25,11 +24,11 @@ instructions
 building `torchtext` from source
 ++++++++++++++++++++++++++++++++
 
-- do `git clone --recurse-submodules https://github.com/MLH-Fellowship/1.0.5-DiscoBot && cd torchtext`
+- do ``git clone --recurse-submodules https://github.com/MLH-Fellowship/1.0.5-DiscoBot && cd torchtext``
 
-- `git submodules update --init --recursive && python setup.py clean install` to build torchtext from source (currently at *0.8.0a0+8dc2125*)
+- ``git submodules update --init --recursive && python setup.py clean install`` to build torchtext from source (currently at *0.8.0a0+8dc2125*)
 
-  - to prep the pretrained embedding run `make prep`, otherwise if you want to train the model parses `ARGS=--train`, like so:
+  - to prep the pretrained embedding run ``make prep``, otherwise if you want to train the model parses ``ARGS=--train``, like so:
 
 .. code-block:: shell
 
