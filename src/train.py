@@ -15,7 +15,9 @@ from helpers import (calc_acc, ep_time, get_config, get_pretrained_embedding,
                      init_params)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-config = get_config("config.yml")
+config = get_config(
+    os.path.join(os.path.abspath(os.path.dirname(__file__)), "config.yml")
+)
 torch.manual_seed(config["seed"])
 random.seed(config["seed"])
 torch.backends.cudnn.deterministic = True

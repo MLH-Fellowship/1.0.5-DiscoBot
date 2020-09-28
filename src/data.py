@@ -1,4 +1,5 @@
 import collections
+import os
 import random
 
 import torch
@@ -6,9 +7,8 @@ import torch.nn as nn
 import torchtext
 import torchtext.experimental
 import torchtext.experimental.vectors
-from torchtext.experimental.datasets.text_classification import (
-    TextClassificationDataset,
-)
+from torchtext.experimental.datasets.text_classification import \
+    TextClassificationDataset
 
 from helpers import sequential_transforms, to_tensor, vocab_func
 
@@ -85,7 +85,7 @@ class Dataset:
         self.MAX_SIZE = max_size
         self.BATCH_SIZE = batch_size
 
-        raw_train, raw_test = torchtext.experimental.datasets.raw.IMDB()
+        raw_train, raw_test = torchtext.experimental.datasets.raw.IMDB(root=os.path.join(os.path.abspath(os.path.dirname(__file__)), '.data'))
         raw_train, raw_valid = get_train_valid_split(raw_train)
 
         self.tokenizer = Tokenizer(max_len=max_len)
