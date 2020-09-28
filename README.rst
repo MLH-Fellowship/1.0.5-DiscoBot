@@ -1,13 +1,13 @@
 DiscoBot
 ========
 
-*sentiment analysis discord bot*
+*profanity filters discord bot*
 
 - `biLSTM` trained on `iMDB` for sentiment analysis
 - `torchtext` was built from `master`, which can be found here_
 
 instructions
-~~~~~~~~~~~~
+++++++++++++
 
 `make help` for further instructions
 
@@ -23,11 +23,13 @@ instructions
 	# > 0.2898484170436859
 
 building `torchtext` from source
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++++++++++++
 
-- `git clone --recurse-submodules https://github.com/MLH-Fellowship/1.0.5-DiscoBot && cd torchtext`
-- `git submodules update --init --recursive && python setup.py clean install`
-- to prep the pretrained embedding run `make prep`, otherwise if you want to train the model parses `ARGS=--train`, like so:
+- do `git clone --recurse-submodules https://github.com/MLH-Fellowship/1.0.5-DiscoBot && cd torchtext`
+
+- `git submodules update --init --recursive && python setup.py clean install` to build torchtext from source (currently at *0.8.0a0+8dc2125*)
+
+  - to prep the pretrained embedding run `make prep`, otherwise if you want to train the model parses `ARGS=--train`, like so:
 
 .. code-block:: shell
 
