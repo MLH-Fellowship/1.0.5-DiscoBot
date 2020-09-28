@@ -1,17 +1,17 @@
 version: 0.9.0
 kind: BentoService
 metadata:
-  created_at: 2020-09-28 16:27:18.750177
+  created_at: 2020-09-28 19:20:43.276168
   service_name: ProfanityFilterService
-  service_version: 20200928122718_05855D
+  service_version: 20200928152042_6C045A
   module_name: bento_service
   module_file: bento_service.py
 env:
   pip_packages:
   - bentoml==0.9.0
   - torch==1.6.0
-  - torchtext==0.8.0a0+8dc2125
   - pyyaml==5.3.1
+  - torchtext==0.8.0a0+8dc2125
   conda_env:
     name: bentoml-default-conda-env
     channels:

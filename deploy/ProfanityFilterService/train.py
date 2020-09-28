@@ -11,8 +11,7 @@ import torchtext.experimental.vectors
 
 from classifier import BiLSTM
 from data import Dataset
-from helpers import (calc_acc, ep_time, get_config, get_pretrained_embedding,
-                     init_params)
+from helpers import calc_acc, ep_time, get_config, get_pretrained_embedding, init_params
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 config = get_config(
@@ -30,6 +29,7 @@ dataloader = Dataset(
     config["max_len"], config["max_size"], config["batch_size"], config["pad_token"]
 )
 train_iterator, test_iterator, valid_iterator = dataloader.get_iterator()
+print("Loaded iterator, generating vocab...")
 vocab = dataloader.get_vocab()
 tokenizer = dataloader.get_tokenizer()
 
@@ -140,5 +140,16 @@ class Model:
 
 
 if __name__ == "__main__":
+    import sys, argparse
+
     m = Model()
-    m.train_loop(train_iterator, valid_iterator)
+    parser = argparse.ArgumentParser(description="training model")
+    parser.add_argument(
+        "--train",
+        action="store_true",
+        default=False,
+        help="whether or not to train a new model",
+    )
+    args = parser.parse_args()
+    if args.train:
+        m.train_loop(train_iterator, valid_iterator)
