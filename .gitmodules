@@ -1,0 +1,3 @@
+[submodule "torchtext"]
+	path = torchtext
+	url = https://github.com/pytorch/text

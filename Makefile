@@ -14,10 +14,10 @@ LATEST := $(shell ls -t -- $(SVC_DIR)/* | head -n1 | cut -d ':' -f1)
 help: ## List of defined target
 	@grep -E '^[a-zA-Z_-]+:.*?##.*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'	
 
-train:
-	cd src && python train.py
+prep: ## Prepare embedding, using GloVe
+	cd src && python train.py $(ARGS)
 
-init: ## package trained model to bento
+init: prep ## package trained model to bento
 	cd src && python packer.py
 
 build: init ## build bento docker images then deploy on 5000

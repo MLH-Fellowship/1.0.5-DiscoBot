@@ -22,5 +22,16 @@ instructions
 	-d "{\"text\":\"I hate you this is the worst experience I have ever seen\"}"
 	# > 0.2898484170436859
 
+building `torchtext` from source
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `git clone --recurse-submodules https://github.com/MLH-Fellowship/1.0.5-DiscoBot && cd torchtext`
+- `git submodules update --init --recursive && python setup.py clean install`
+- to prep the pretrained embedding run `make prep`, otherwise if you want to train the model parses `ARGS=--train`, like so:
+
+.. code-block:: shell
+
+    # This will train the model
+    make ARGS=--train prep 
 
 .. _here: https://github.com/pytorch/text
