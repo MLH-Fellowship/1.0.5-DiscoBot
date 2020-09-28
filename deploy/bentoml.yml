@@ -1,9 +1,9 @@
 version: 0.9.0
 kind: BentoService
 metadata:
-  created_at: 2020-09-28 06:47:23.589859
+  created_at: 2020-09-28 07:21:46.515633
   service_name: ProfanityFilterService
-  service_version: 20200928024723_97F9BF
+  service_version: 20200928032146_21B44E
   module_name: bento_service
   module_file: bento_service.py
 env:
