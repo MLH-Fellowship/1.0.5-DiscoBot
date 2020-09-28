@@ -20,7 +20,7 @@ prep: ## Prepare embedding, using GloVe
 init: prep ## package trained model to bento
 	cd src && python packer.py
 
-build: init ## build bento docker images then deploy on 5000
+build: ## build bento docker images then deploy on 5000
 	rm -rf $(DEPLOY_DIR) && cp -r $(LATEST) $(DEPLOY_DIR) && mkdir $(DOT_DATA)
 	cp -r src/.data/{aclImdb,aclImdb_v1.tar.gz,glove.6B.50d.txt}  $(DOT_DATA)	
 	cp src/requirements.txt $(DEPLOY_DIR) && cp src/config.yml $(DEPLOY_DIR)/ProfanityFilterService

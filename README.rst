@@ -11,7 +11,8 @@ instructions
 
 ``make help`` for further instructions
 
-- To package the model to bento do ``make``
+- prepare pretrained embeddings do ``make init``
+- To package the model to bento do ``make build``
 - to run the docker container do ``make run``
 - endpoint can be accessed through ``POST`` request via ``localhost:5000``
 
