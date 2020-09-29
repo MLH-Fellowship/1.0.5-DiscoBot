@@ -1,7 +1,11 @@
-DiscoBot
-========
+Profanity Filters Bot
+=====================
 
-*profanity filters discord bot*
+|License| |PR| |Lang|
+
+.. |License| image:: https://img.shields.io/github/license/MLH-Fellowship/1.0.5-profanity-filters-bot?style=flat-square   :alt: GitHub
+.. |PR| image:: https://img.shields.io/github/issues-pr/MLH-Fellowship/1.0.5-profanity-filters-bot?style=flat-square   :alt: GitHub pull requests
+.. |Lang| image:: https://img.shields.io/github/languages/count/MLH-Fellowship/1.0.5-profanity-filters-bot?style=flat-square   :alt: GitHub language count
 
 - [NSFW] Release all you can say via Swagger under  `/predict <https://profanityfilterservice.herokuapp.com/>`_
 - ``biLSTM`` trained on ``iMDB`` for sentiment analysis
