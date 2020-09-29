@@ -8,6 +8,7 @@ Profanity Filters Bot
 .. |Lang| image:: https://img.shields.io/github/languages/count/MLH-Fellowship/1.0.5-profanity-filters-bot?style=flat-square   :alt: GitHub language count
 
 - A demo can be found on `Youtube <https://www.youtube.com/watch?v=T_aDZYCJVdM>`_
+- Link to devpost `here <https://devpost.com/software/profanity-filter-bot>`_
 - [NSFW] Release all you can say via Swagger under  `/predict <https://profanityfilterservice.herokuapp.com/>`_
 - ``biLSTM`` trained on ``iMDB`` for sentiment analysis
 - ``torchtext`` was built from ``master``, which can be found `here <https://github.com/pytorch/text>`_
